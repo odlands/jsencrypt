@@ -16,15 +16,18 @@ import {KJUR} from "../lib/jsrsasign/asn1-1.0";
  */
 export class JSEncryptRSAKey extends RSAKey {
     constructor(key?:string) {
+        console.log("a");
         super();
         // Call the super constructor.
         //  RSAKey.call(this);
         // If a key key was provided.
         if (key) {
+            console.log("b");
             // If this is a string...
             if (typeof key === "string") {
                 this.parseKey(key);
             } else if (
+                console.log("c");
                 JSEncryptRSAKey.hasPrivateKeyProperty(key) ||
                 JSEncryptRSAKey.hasPublicKeyProperty(key)
             ) {

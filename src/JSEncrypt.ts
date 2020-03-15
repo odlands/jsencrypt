@@ -66,6 +66,8 @@ export default class JSEncrypt {
      * @public
      */
     public setPublicKey(pubkey:string) {
+        console.log("test");
+        console.log("SetPublicKey = ", pubkey);
         // Sets the public key.
         this.setKey(pubkey);
     }

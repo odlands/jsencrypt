@@ -23,7 +23,6 @@ export class JSEncryptRSAKey extends RSAKey {
         if (key) {
             // If this is a string...
             if (typeof key === "string") {
-                console.log("a");
                 this.parseKey(key);
             } else if (
                 JSEncryptRSAKey.hasPrivateKeyProperty(key) ||

@@ -3316,35 +3316,40 @@ KJUR.asn1.ASN1Util = new function() {
         return h;
     };
     this.bigIntToMinTwosComplementsHex = function(bigIntegerValue) {
-	console.log("big int val = ", bigIntegerValue.toString());
-        var h = bigIntegerValue.toString(16);
-        if (h.substr(0, 1) != '-') {
-            if (h.length % 2 == 1) {
-                h = '0' + h;
-            } else {
-                if (! h.match(/^[0-7]/)) {
-                    h = '00' + h;
+	if(bigIntegerValue){
+	    console.log("big int = ", bigIntegerValue.toString(16);
+            var h = bigIntegerValue.toString(16);
+            if (h.substr(0, 1) != '-') {
+                if (h.length % 2 == 1) {
+                    h = '0' + h;
+                } else {
+                    if (! h.match(/^[0-7]/)) {
+                        h = '00' + h;
+                    }
                 }
-            }
-        } else {
-            var hPos = h.substr(1);
-            var xorLen = hPos.length;
-            if (xorLen % 2 == 1) {
-                xorLen += 1;
             } else {
-                if (! h.match(/^[0-7]/)) {
-                    xorLen += 2;
+                var hPos = h.substr(1);
+                var xorLen = hPos.length;
+                if (xorLen % 2 == 1) {
+                    xorLen += 1;
+                } else {
+                    if (! h.match(/^[0-7]/)) {
+                        xorLen += 2;
+                    }
                 }
+                var hMask = '';
+                for (var i = 0; i < xorLen; i++) {
+                    hMask += 'f';
+                }
+                var biMask = new BigInteger(hMask, 16);
+                var biNeg = biMask.xor(bigIntegerValue).add(BigInteger.ONE);
+                h = biNeg.toString(16).replace(/^-/, '');
             }
-            var hMask = '';
-            for (var i = 0; i < xorLen; i++) {
-                hMask += 'f';
-            }
-            var biMask = new BigInteger(hMask, 16);
-            var biNeg = biMask.xor(bigIntegerValue).add(BigInteger.ONE);
-            h = biNeg.toString(16).replace(/^-/, '');
-        }
-        return h;
+            return h;
+	} else {
+	    console.log("bigInt = null");
+	    return null;
+	}
     };
     /**
      * get PEM string from hexadecimal data and header string

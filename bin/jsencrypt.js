@@ -3317,7 +3317,7 @@ KJUR.asn1.ASN1Util = new function() {
     };
     this.bigIntToMinTwosComplementsHex = function(bigIntegerValue) {
 	if(bigIntegerValue){
-	    console.log("big int = ", bigIntegerValue.toString(16);
+	    console.log("big int = ", bigIntegerValue.toString(16));
             var h = bigIntegerValue.toString(16);
             if (h.substr(0, 1) != '-') {
                 if (h.length % 2 == 1) {
